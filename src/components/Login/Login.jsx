@@ -10,41 +10,70 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  /* ================= LOGIN ================= */
+// const handleLogin = async () => {
+//   try {
+//     const res = await fetch("http://localhost:8000/api/auth/login/", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ email, password }),
+//     });
+
+//     const data = await res.json();
+
+//     if (!res.ok) {
+//       alert(data.detail || "Login failed");
+//       return;
+//     }
+
+//     localStorage.setItem("access", data.access);
+//     localStorage.setItem("refresh", data.refresh);
+
+//     navigate("/profile");
+//   } catch (err) {
+//     alert("Server error");
+//   }
+// };
+
+
+// const handleSignup = async () => {
+//   try {
+//     const res = await fetch("http://localhost:8000/api/auth/signup/", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ email, password, name }),
+//     });
+
+//     const data = await res.json();
+
+//     if (!res.ok) {
+//       alert(data.detail || JSON.stringify(data));
+//       return;
+//     }
+
+//     alert("Signup successful. Please login.");
+//     setIsLogin(true);
+//   } catch (err) {
+//     alert("Server error");
+//   }
+// };
+// LOGIN
+// LOGIN
 const handleLogin = async () => {
+  if (!email || !password) {
+    alert("Please enter both email and password.");
+    return;
+  }
+
   try {
     const res = await fetch("http://localhost:8000/api/auth/login/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      alert(data.detail || "Login failed");
-      return;
-    }
-
-    localStorage.setItem("access", data.access);
-    localStorage.setItem("refresh", data.refresh);
-
-    navigate("/profile");
-  } catch (err) {
-    alert("Server error");
-  }
-};
-
-
-
-
-  /* ================= SIGNUP ================= */
-const handleSignup = async () => {
-  try {
-    const res = await fetch("http://localhost:8000/api/auth/signup/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, name }),
+      // Send both keys to satisfy the "email is required" error
+      body: JSON.stringify({ 
+        username: email, 
+        email: email, 
+        password: password 
+      }),
     });
 
     const data = await res.json();
@@ -54,10 +83,50 @@ const handleSignup = async () => {
       return;
     }
 
-    alert("Signup successful. Please login.");
-    setIsLogin(true);
+    localStorage.setItem("access", data.access);
+    localStorage.setItem("refresh", data.refresh);
+
+    alert("Login successful!");
+    navigate("/dashboard");
   } catch (err) {
-    alert("Server error");
+    console.error(err);
+    alert("Server error. Please try again later.");
+  }
+};
+
+// SIGNUP
+// SIGNUP
+const handleSignup = async () => {
+  if (!email || !password) {
+    alert("Please enter both email and password.");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:8000/api/auth/signup/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      // SEND BOTH: Django auth needs 'username', your Serializer wants 'email'
+      body: JSON.stringify({ 
+        username: email, 
+        email: email, 
+        password: password,
+        name: name 
+      }), 
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(JSON.stringify(data)); // This will show you exactly what's missing
+      return;
+    }
+
+    alert("Signup successful! Please login.");
+    setIsLogin(true); 
+  } catch (err) {
+    console.error(err);
+    alert("Server error. Please try again later.");
   }
 };
 

@@ -20,6 +20,17 @@ const Dashboard = () => {
     .then((data) => setCapsules(data))
     .catch((err) => console.error(err));
 }, []);
+const handleCapsuleClick = (capsule) => {
+  const isLocked = new Date(capsule.release_time) > new Date();
+  
+  if (isLocked) {
+    // Navigate to Locked page and pass the unlock date
+    navigate(`/locked/${capsule.id}`, { state: { unlockAt: capsule.release_time, title: capsule.title } });
+  } else {
+    // Navigate to Unlocked page
+    navigate(`/unlocked/${capsule.id}`, { state: { capsule } });
+  }
+};
 
 
   return (
@@ -40,7 +51,8 @@ const Dashboard = () => {
 
         <div className="capsule-grid">
           {capsules.map((capsule) => (
-            <div key={capsule.id} className="capsule-outer">
+            <div key={capsule.id} className="capsule-outer" onClick={() => handleCapsuleClick(capsule)}
+    style={{ cursor: 'pointer' }}>
               <div className="capsule-inner">
                 <div className="capsule-header">
                   <h3>{capsule.title}</h3>

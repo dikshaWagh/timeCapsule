@@ -3,15 +3,21 @@ import UnlockedCapsule from "../Unlocked/Unlocked";
 import "./Locked.css";
 import Navbar from "../Navbar2/Navbar2";
 import { useNavigate } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 
 
-export default function LockedCapsule({ unlockAt }) {
+export default function LockedCapsule() { 
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const { unlockAt, title } = location.state || {}; 
+    
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
     const isUnlocked = timeLeft.total <= 0;
-    const navigate = useNavigate()
-      const handleEvent=()=>{
-      navigate('/dashboard')
-    }
+    
+    const handleEvent = () => {
+        navigate('/dashboard');
+    };
 
     useEffect(() => {
         if (isUnlocked) return;
@@ -47,10 +53,10 @@ export default function LockedCapsule({ unlockAt }) {
         });
     }
 
-    // 🔓 Once unlocked → delegate to separate component
     if (isUnlocked) {
         return <UnlockedCapsule />;
     }
+
 
     return (
         <>

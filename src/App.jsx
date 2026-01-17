@@ -9,6 +9,13 @@ import CreateCapsule from './components/CreateCapsule/CreateCapsule.jsx'
 import UnlockedCapsule from './components/Unlocked/Unlocked.jsx'
 import Profile from './components/Profile/Profile.jsx'
 import Settings from './components/Settings/Settings.jsx'
+const ProtectedRoute = ({ children }) => {
+  const token = localStorage.getItem("access");
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+};
 function App() {
 
   return (
@@ -16,12 +23,12 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/locked" element={<LockedCapsule />} />
-      <Route path="/create" element={<CreateCapsule />} />
-      <Route path="/unlocked" element={<UnlockedCapsule />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/settings" element={<Settings />} />
+      <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      <Route path="/locked/:id" element={<ProtectedRoute><LockedCapsule /></ProtectedRoute>} />
+      <Route path="/create" element={<ProtectedRoute><CreateCapsule /></ProtectedRoute>} />
+      <Route path="/unlocked/:id" element={<ProtectedRoute><UnlockedCapsule /></ProtectedRoute>} />
+      <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+      <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
     </Routes>
     </>
   )

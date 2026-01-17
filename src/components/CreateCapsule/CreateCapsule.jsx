@@ -11,74 +11,64 @@ export default function CreateCapsule() {
   const [unlockDate, setUnlockDate] = useState("");
   const [files, setFiles] = useState([]);
 
-  const handleSubmit = async () => {
+const handleSubmit = async () => {
   try {
-    if (!unlockDate) {
-      alert("Please select an unlock date");
-      return;
-    }
-
-    // ✅ 0️⃣ Get token saved during login
     const token = localStorage.getItem("access");
     if (!token) {
-      alert("You are not logged in");
+      alert("Please login again.");
       return;
     }
 
-    // ✅ 1️⃣ Register capsule
-    const res = await fetch(
-      "http://localhost:8000/api/capsule/capsule/register/",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // ⭐ REQUIRED
-        },
-        body: JSON.stringify({
-          title: title || null,
-          message: message || null,
-          email_list: ["test@example.com"],
-          release_time: new Date(unlockDate).toISOString(),
-        }),
-      }
-    );
+    // 1️⃣ REGISTER CAPSULE
+    const res = await fetch("http://localhost:8000/api/capsule/capsule/register/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        title: title || "Untitled",
+        message: message || "",
+        email_list: ["test@example.com"], // Must be an array
+        release_time: new Date(unlockDate).toISOString() // Must be ISO string
+      })
+    });
+
+    const data = await res.json(); // Read JSON ONCE
 
     if (!res.ok) {
-      const errText = await res.text();
-      throw new Error(errText);
+      throw new Error(data.detail || "Registration failed");
     }
 
-    const { id } = await res.json();
+    const capsuleId = data.id; // Get the ID returned by register
 
-    // ✅ 2️⃣ Upload files
+    // 2️⃣ UPLOAD FILES
     for (const file of files) {
       const formData = new FormData();
-      formData.append("file", file);
-      formData.append("id", id);
+      formData.append("file", file); // Key must be 'file'
+      formData.append("id", capsuleId); // Key must be 'id'
 
-      const uploadRes = await fetch(
-        "http://localhost:8000/api/capsule/capsule/upload/",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`, // ⭐ REQUIRED
-          },
-          body: formData,
-        }
-      );
+      const uploadRes = await fetch("http://localhost:8000/api/capsule/capsule/upload/", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`
+          // IMPORTANT: Do NOT set Content-Type for FormData
+        },
+        body: formData
+      });
 
       if (!uploadRes.ok) {
-        throw new Error("File upload failed");
+        const errorHtml = await uploadRes.text();
+        console.error("Server Error:", errorHtml);
+        throw new Error("Cloud Storage Error: Check Supabase settings.");
       }
     }
 
-    // ✅ 3️⃣ Success
-    alert("Capsule created successfully!");
+    alert("Capsule created!");
     navigate("/dashboard");
 
   } catch (err) {
-    console.error("CREATE CAPSULE ERROR:", err);
-    alert(err.message || "Failed to create capsule");
+    alert(err.message);
   }
 };
 
