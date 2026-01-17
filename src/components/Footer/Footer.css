@@ -1,0 +1,36 @@
+.footer {
+  background: #f4efe9;
+  padding: 4rem 6%;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  color: #2c2c2c;
+}
+
+.footer h4 {
+  font-family: "Georgia", serif;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+}
+
+.footer h5 {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.footer p {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  margin: 0.4rem 0;
+  cursor: pointer;
+}
+
+.footer p:hover {
+  opacity: 1;
+}
+
+.footer-brand p {
+  max-width: 320px;
+}

@@ -1,0 +1,207 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500&display=swap"); */
+
+:root {
+  --bg: #f7f2eb;
+  --card: #fbf8f3;
+  --border: #ded6cb;
+  --text: #5b4a3a;
+  --muted: #8b7b6b;
+  --accent: #6b5845;
+}
+
+
+
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: "Inter", sans-serif;
+  color: var(--text);
+}
+
+/* Page */
+.profile-page {
+  min-height: 100vh;
+  margin-top: 100px;
+}
+
+/* Navbar */
+.navbar {
+  height: 72px;
+  padding: 0 3rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: "Playfair Display", serif;
+  letter-spacing: 0.06em;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.nav-icon {
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.profile-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* Title */
+.page-title {
+  margin: 3rem 0 2.5rem;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+}
+
+/* Profile Card */
+.profile-card {
+  width: 520px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  padding: 3rem;
+  animation: fadeUp 0.5s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #e6dfd6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.username {
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+}
+
+/* Form */
+.form-group {
+  margin-bottom: 1.6rem;
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  padding: 0.7rem 0.8rem;
+  background: #fff;
+  font-family: inherit;
+  font-size: 0.9rem;
+  resize: none;
+}
+
+textarea {
+  height: 80px;
+}
+
+/* Buttons */
+.edit-btn {
+  margin: 2rem auto 0;
+  display: block;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 0.55rem 1.8rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.edit-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.stat-card {
+  width: 220px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.stat-value {
+  margin-top: 0.4rem;
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+}
+
+/* Logout */
+.logout-btn {
+  display: block;
+  margin: 2rem auto 4rem;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 0.6rem 2rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.logout-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}

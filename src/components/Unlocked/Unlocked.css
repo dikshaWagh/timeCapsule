@@ -1,0 +1,145 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500&display=swap'); */
+
+:root {
+  --bg: #faf7f2;
+  --brown: #6b5845;
+  --light-brown: #a08c78;
+  --card: #ffffff;
+  --border: #e6dfd6;
+  --success: #7bbf8a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: "Inter", sans-serif;
+}
+
+/* Topbar */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+}
+
+.logo {
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  color: var(--brown);
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.home-btn {
+  background: var(--brown);
+  color: #fff;
+  border: none;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* Back */
+.back-link {
+  margin: 2.2rem 0 0 3rem;
+  font-size: 0.95rem;
+  color: var(--brown);
+  cursor: pointer;
+}
+
+/* Title */
+.capsule-title {
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: 2.1rem;
+  margin: 2.5rem 0;
+}
+
+/* Card */
+.capsule-card {
+  width: 480px;
+  margin: 0 auto 4rem;
+  background: var(--card);
+  padding: 3rem 2.5rem;
+  border-radius: 6px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Unlock Info */
+.unlock-info {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.unlock-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--bg);
+  border-radius: 50%;
+  margin: -5.2rem auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: var(--success);
+}
+
+.unlock-label {
+  font-size: 0.9rem;
+  color: var(--light-brown);
+  margin-bottom: 0.4rem;
+}
+
+.unlock-date {
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+  color: var(--brown);
+}
+
+/* Sections */
+.content-section {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--brown);
+  margin-bottom: 1rem;
+}
+
+/* Message */
+.message-box {
+  height: 120px;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+/* Media */
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.media-grid img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 2px;
+}

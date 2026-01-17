@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500&display=swap');
+
+:root {
+  --bg: #faf7f2;
+  --brown: #6b5845;
+  --light-brown: #a08c78;
+  --border: #ddd4ca;
+  --card: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: "Inter", sans-serif;
+}
+
+
+
+/* Page */
+.create-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0rem;
+}
+
+.page-title {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Card */
+.form-card {
+  background: var(--card);
+  width: 460px;
+  padding: 2.8rem 2.6rem;
+  border-radius: 6px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Form */
+.form-group {
+  margin-bottom: 1.8rem;
+}
+
+label {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: var(--brown);
+}
+.back-link {
+  text-align: left;
+  margin-top: 100px;
+  font-size: 0.95rem;
+  color: #000;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  font-size: 0.9rem;
+  font-family: "Inter", sans-serif;
+}
+
+textarea {
+  height: 140px;
+  resize: none;
+}
+
+/* Upload box */
+.upload-box {
+  border: 2px dashed var(--brown);
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.upload-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.upload-box p {
+  font-size: 0.9rem;
+  margin: 0.4rem 0;
+}
+
+.upload-box span {
+  font-size: 0.8rem;
+  color: var(--light-brown);
+}
+
+/* Date */
+.date-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  padding: 0.5rem;
+}
+
+.calendar-icon {
+  margin-right: 0.5rem;
+}
+
+.date-input input {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+/* Button */
+.lock-btn {
+  margin-top: 2rem;
+  width: 100%;
+  background: var(--brown);
+  color: #fff;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
